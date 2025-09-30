@@ -113,5 +113,3 @@ The .db file is the database
 .env is just a file to keep private stuff (Google login keys).
 
 You can open the database with DB Browser for SQLite to see tables.
-
-👉 Do you want me to also write a super simple diagram (like boxes and arrows) for the README so it’s easier to picture how main → router → handler → DB connects?
