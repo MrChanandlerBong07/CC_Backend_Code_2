@@ -20,7 +20,7 @@ OAUTH_URL = (
     f"&redirect_uri={REDIRECT_URI}"
 )
 
-def signup(username: str, password: str):
+def sign_up(username: str, password: str):
     cn = sqlite3.connect(DB_PATH)
     cr = cn.cursor()
     cr.execute("SELECT * FROM users WHERE username=?", (username,))
@@ -33,7 +33,7 @@ def signup(username: str, password: str):
     cn.close()
     return {"message": "User signed up"}
 
-def user_login(username: str, password: str):
+def users_login(username: str, password: str):
     cn = sqlite3.connect(DB_PATH)
     cr = cn.cursor()
     cr.execute("SELECT * FROM users WHERE username=? AND password=? AND role='user'",
@@ -58,7 +58,7 @@ def admin_login(username: str, password: str):
 def google_login():
     return {"url": OAUTH_URL}
 
-def google_callback(code: str):
+def google_calling_back(code: str):
     token_url = "https://oauth2.googleapis.com/token"
     data = {
         "code": code,

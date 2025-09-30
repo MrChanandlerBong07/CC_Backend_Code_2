@@ -1,12 +1,15 @@
 from fastapi import APIRouter
 from handlers import inventory_handlers
+from schemas import Add_Inventory_Item
 
-router = APIRouter()
+router = APIRouter(prefix="/inventory", tags=["inventory"])
 
 @router.get("/list")
-def list_items(username: str):
-    return inventory_handlers.list_items(username)
+def list_of_the_inventory(username: str):
+    return inventory_handlers.list_inventory(username)
 
 @router.post("/new")
-def add_item(username: str, name: str, category: str, description: str, quantity: int, price: float):
-    return inventory_handlers.add_item(username, name, category, description, quantity, price)
+def adding_to_inventory(item: Add_Inventory_Item, username: str):
+    return inventory_handlers.add_inventory(
+        username, item.name, item.type, item.refillable, item.quantity, item.price
+    )

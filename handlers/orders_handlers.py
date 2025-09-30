@@ -3,7 +3,7 @@ from fastapi import HTTPException
 
 DB_PATH = "db/shop_database.db"
 
-def past_orders(username: str):
+def order_history(username: str):
     cn = sqlite3.connect(DB_PATH)
     cr = cn.cursor()
     cr.execute("SELECT * FROM orders WHERE username=?", (username,))
@@ -11,7 +11,7 @@ def past_orders(username: str):
     cn.close()
     return [{"id": o[0], "username": o[1], "items": o[2]} for o in orders]
 
-def view_orders(username: str):
+def viewing_orders(username: str):
     cn = sqlite3.connect(DB_PATH)
     cr = cn.cursor()
     cr.execute("SELECT role FROM users WHERE username=?", (username,))

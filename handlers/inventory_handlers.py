@@ -3,7 +3,7 @@ from fastapi import HTTPException
 
 DB_PATH = "db/shop_database.db"
 
-def list_items(username: str):
+def list_of_items(username: str):
     cn = sqlite3.connect(DB_PATH)
     cr = cn.cursor()
     cr.execute("SELECT role FROM users WHERE username=?", (username,))
@@ -17,7 +17,7 @@ def list_items(username: str):
     return [dict(id=i[0], name=i[1], category=i[2], description=i[3],
                  quantity=i[4], price=i[5]) for i in items]
 
-def add_item(username: str, name: str, category: str, description: str, quantity: int, price: float):
+def adding_item(username: str, name: str, category: str, description: str, quantity: int, price: float):
     cn = sqlite3.connect(DB_PATH)
     cr = cn.cursor()
     cr.execute("SELECT role FROM users WHERE username=?", (username,))

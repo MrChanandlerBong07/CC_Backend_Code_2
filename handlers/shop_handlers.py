@@ -2,7 +2,7 @@ import sqlite3
 
 DB_PATH = "db/shop_database.db"
 
-def shop_list():
+def shop():
     cn = sqlite3.connect(DB_PATH)
     cr = cn.cursor()
     cr.execute("SELECT id, name, price, quantity FROM inventory")

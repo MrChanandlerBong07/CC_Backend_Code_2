@@ -10,7 +10,6 @@ def init_db():
     cn = sqlite3.connect(DB_PATH)
     cr = cn.cursor()
 
-    # Users table
     cr.execute("""
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,7 +19,6 @@ def init_db():
     )
     """)
 
-    # Inventory table
     cr.execute("""
     CREATE TABLE IF NOT EXISTS inventory (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,8 +31,6 @@ def init_db():
         restocked REAL
     )
     """)
-
-    # Orders table
     cr.execute("""
     CREATE TABLE IF NOT EXISTS orders (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

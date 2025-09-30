@@ -4,7 +4,7 @@ from fastapi import HTTPException
 DB_PATH = "db/shop_database.db"
 carts = {}
 
-def add_to_cart(username: str, product_id: int, qty: int):
+def adding_to_cart(username: str, product_id: int, qty: int):
     cn = sqlite3.connect(DB_PATH)
     cr = cn.cursor()
     cr.execute("SELECT * FROM inventory WHERE id=?", (product_id,))
@@ -21,13 +21,13 @@ def add_to_cart(username: str, product_id: int, qty: int):
     cn.close()
     return {"message": "Added to cart"}
 
-def cart_info(username: str):
+def info_of_cart(username: str):
     if username not in carts:
         return {"cart": [], "total": 0}
     total = sum(c["qty"] * c["price"] for c in carts[username])
     return {"cart": carts[username], "total": total}
 
-def checkout(username: str):
+def checking_out(username: str):
     if username not in carts or not carts[username]:
         raise HTTPException(status_code=400, detail="Cart empty")
     cn = sqlite3.connect(DB_PATH)

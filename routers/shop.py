@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from handlers import shop_handlers
 
-router = APIRouter()
+router = APIRouter(prefix="/shop", tags=["shop"])
 
 @router.get("/list")
-def shop_list():
+def shop():
     return shop_handlers.shop_list()
